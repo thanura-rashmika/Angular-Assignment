@@ -1,0 +1,46 @@
+DROP DATABASE absd;
+CREATE DATABASE absd;
+use absd;
+CREATE table customer(
+	cid int (20) AUTO_INCREMENT,
+	name varchar(30),
+	address varchar(40),
+	mobile varchar (30),
+	CONSTRAINT PRIMARY KEY(cid)
+);
+
+create table item(
+	code INT(20)AUTO_INCREMENT,
+	name varchar(20),
+	price double(10,2),
+	qty double(10,2),
+	CONSTRAINT PRIMARY KEY(code)
+);
+
+CREATE TABLE orders(
+	oid int(20)AUTO_INCREMENT,
+	date date,
+	total double(10,2),
+	cid int(20),
+	CONSTRAINT PRIMARY KEY(oid),
+	CONSTRAINT FOREIGN KEY(cid) REFERENCES customer(cid)
+	ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE orderDetails(
+	code INT(20),
+	oid INT(20),
+	unitPrice double(10,2),
+	qty double(10,2),
+	CONSTRAINT FOREIGN KEY(code) REFERENCES item(code)
+	ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT FOREIGN KEY(oid) REFERENCES orders(oid)
+	ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+SHOW TABLES;
+
+DESC customer;
+DESC item;
+DESC orders;
+DESC orderDetails;
