@@ -21,6 +21,7 @@ public class CustomerServlet extends HttpServlet {
     private CustomerService customerService=new ServiceFactory().getService(ServiceFactory.ServiceTypes.CUSTOMER);
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        System.out.println("fdfsdfd");
         try {
             boolean operation = req.getHeader("operation").isEmpty();
         } catch (NullPointerException n){
